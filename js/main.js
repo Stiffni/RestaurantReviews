@@ -158,11 +158,22 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
-  const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+  const picture = document.createElement('picture');
+  const largeSource = document.createElement('source');
+  const smallSource = document.createElement('source');
+  largeSource.media = '(min-width: 800px)'
+  smallSource.media = '(max-width: 799px)'
 
+  const largeImage = document.createElement('img');
+  largeImage.className = 'restaurant-img';
+  largeImage.src = DBHelper.imageUrlForRestaurant(restaurant);
+  const smallImageSrc = DBHelper.smallImageUrlForRestaurant(restaurant);
+  largeSource.srcset = largeImage.src;
+  smallSource.srcset = smallImageSrc;
+  picture.appendChild(largeSource);
+  picture.appendChild(smallSource);
+  picture.appendChild(largeImage);
+  li.append(picture);
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
   li.append(name);
@@ -197,7 +208,11 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 
-} 
+  let markerIcons = document.getElementsByClassName("leaflet-marker-icon");
+  for(let markerIcon of markerIcons){
+    markerIcon.tabIndex = -1;
+  }
+}
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map

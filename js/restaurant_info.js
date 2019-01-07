@@ -4,7 +4,7 @@ var newMap;
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {  
+document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
 
@@ -15,7 +15,7 @@ initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
-    } else {      
+    } else {
       self.newMap = L.map('map', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
         zoom: 16,
@@ -27,13 +27,28 @@ initMap = () => {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox.streets'    
+        id: 'mapbox.streets'
       }).addTo(newMap);
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
-}  
+
+  let mapTouch = document.getElementsByClassName("leaflet-touch");
+  mapTouch[0].tabIndex = -1;
+  let zoomIn = document.getElementsByClassName("leaflet-control-zoom-in");
+  zoomIn[0].tabIndex = -1;
+  let zoomOut = document.getElementsByClassName("leaflet-control-zoom-out");
+  zoomOut[0].tabIndex = -1;
+  let mapFooterLinks = document.getElementsByClassName("leaflet-control-attribution")[0];
+  for(let mapFooterLink of mapFooterLinks.children){
+    mapFooterLink.tabIndex = -1;
+  }
+  let markerIcons = document.getElementsByClassName("leaflet-marker-icon");
+  for(let markerIcon of markerIcons){
+    markerIcon.tabIndex = -1;
+  }
+}
  
 /* window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {

@@ -35,6 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
+label {
+  display:none;
+}
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
@@ -69,7 +72,6 @@ nav h1 a {
   padding: .5em 2.3em 1em;
   list-style: none;
   background-color: #eee;
-  font-size: 12pt;
   margin: 0;
   width: 100%;
 }
@@ -77,6 +79,7 @@ nav h1 a {
 /* Display list items side by side */
 #breadcrumb li {
   display: inline;
+  font-size: 12pt;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
@@ -94,8 +97,8 @@ nav h1 a {
 
 /* Add a color on mouse-over */
 #breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
+  color: #01447e;
+  text-decoration: underline;
 }
 /* ====================== Map ====================== */
 #map {
@@ -195,6 +198,7 @@ nav h1 a {
   right: 0;
   width: 50%;
   height: 100%;
+  min-width: 350px;
 }
 .inside #map {
   background-color: #ccc;
