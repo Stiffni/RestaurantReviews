@@ -102,6 +102,12 @@ initMap = () => {
 } */
 
 /**
+ * Focus on filter
+ */
+$neighbourhoodFilter = document.getElementById('neighborhoods-select');
+$neighbourhoodFilter.focus();
+
+/**
  * Update page and map for current restaurants.
  */
 updateRestaurants = () => {
@@ -167,6 +173,7 @@ createRestaurantHTML = (restaurant) => {
   const largeImage = document.createElement('img');
   largeImage.className = 'restaurant-img';
   largeImage.src = DBHelper.imageUrlForRestaurant(restaurant);
+  largeImage.alt = `${restaurant.name} restaurant setting`;
   const smallImageSrc = DBHelper.smallImageUrlForRestaurant(restaurant);
   largeSource.srcset = largeImage.src;
   smallSource.srcset = smallImageSrc;
@@ -207,11 +214,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     }
     self.markers.push(marker);
   });
-
-  let markerIcons = document.getElementsByClassName("leaflet-marker-icon");
-  for(let markerIcon of markerIcons){
-    markerIcon.tabIndex = -1;
-  }
 }
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {

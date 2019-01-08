@@ -33,21 +33,6 @@ initMap = () => {
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
-
-  let mapTouch = document.getElementsByClassName("leaflet-touch");
-  mapTouch[0].tabIndex = -1;
-  let zoomIn = document.getElementsByClassName("leaflet-control-zoom-in");
-  zoomIn[0].tabIndex = -1;
-  let zoomOut = document.getElementsByClassName("leaflet-control-zoom-out");
-  zoomOut[0].tabIndex = -1;
-  let mapFooterLinks = document.getElementsByClassName("leaflet-control-attribution")[0];
-  for(let mapFooterLink of mapFooterLinks.children){
-    mapFooterLink.tabIndex = -1;
-  }
-  let markerIcons = document.getElementsByClassName("leaflet-marker-icon");
-  for(let markerIcon of markerIcons){
-    markerIcon.tabIndex = -1;
-  }
 }
  
 /* window.initMap = () => {
@@ -104,7 +89,12 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `${restaurant.name} restaurant setting`;
 
+  const largeSource =  document.getElementById('large-image');
+  const smallSource =  document.getElementById('small-image');
+  largeSource.srcset = image.src;
+  smallSource.srcset = DBHelper.smallImageUrlForRestaurant(restaurant);
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
