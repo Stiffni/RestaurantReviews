@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (max-width: 549px) {
+@media screen and (max-width: 730px) {
   nav h1 {
     padding: .1em;
     width:100%;
