@@ -10,5 +10,5 @@ For Python 3.x, you can use python3 -m http.server 8000. If you don't have Pytho
 Note - For Windows systems, Python 3.x is installed as python by default. To start a Python 3.x server, you can simply enter python -m http.server 8000.
 3. Open your favourite browser, and go to this url: `http://localhost:8000`
 
-##Acknowledgements
+## Acknowledgements
 This project contained starter code for a webpage, created for the Udacity Web Developer Nanodegree, which was not created by me. Some content added for this project was taken directly from the lessons in the course. Thanks Udacity team!
