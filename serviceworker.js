@@ -53,10 +53,16 @@ self.addEventListener('activate', event => {
   );
 });
 
-self.addEventListener('fetch', event => {
+//https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then(response => {
-      return response || fetch(event.request);
+    caches.open(staticCacheName).then(function(cache) {
+      return cache.match(event.request).then(function (response) {
+        return response || fetch(event.request).then(function(response) {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      });
     })
   );
 });
