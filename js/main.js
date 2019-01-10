@@ -7,8 +7,8 @@ var markers = []
 /**
  * Register service worker
  */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceWorker.js', {
+if ('serviceworker' in navigator) {
+  navigator.serviceworker.register('/serviceworker.js', {
     scope: '/'
   });
 }
@@ -190,7 +190,7 @@ createRestaurantHTML = (restaurant) => {
   picture.appendChild(smallSource);
   picture.appendChild(largeImage);
   li.append(picture);
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
